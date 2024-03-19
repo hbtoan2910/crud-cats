@@ -10,6 +10,7 @@
   Initialize a project Serverless Node.js: sls create --template aws-nodejs --path crud-cats --name crud-cats
 
   Deploy project: sls deploy
+  
 
 2. Cấu hình thông tin đăng nhập AWS vào máy local
 
@@ -38,12 +39,9 @@
 
 3. Viết API tạo con mèo – Create Cat
 
-
 4. API gọi con mèo – Get Cat
 
-
 5. API chỉnh sửa thông tin mèo – Update Cat
-
 
 6. API xóa con mèo – Delete Cat
 
@@ -90,4 +88,4 @@
    
 };
 
-2. 
+2. Utilize console.log for easier debugging. Check logs in AWS WebConsole > CloudWatch service.
