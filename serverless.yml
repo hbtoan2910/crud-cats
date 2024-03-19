@@ -1,0 +1,61 @@
+service: crud-cats
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    REGION: "${self:provider.region}"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-1:*:*"
+
+functions:
+  createCat:
+    handler: controllers/cat.createCat
+    events:
+      - http:
+          path: /create
+          method: post
+
+  findAllCats:
+    handler: controllers/cat.findAllCats
+    events:
+      - http:
+          path: /
+          method: get
+
+  findCatById:
+    handler: controllers/cat.findCatById
+    events:
+      - http:
+          path: /cat/{id}/
+          method: get
+
+  updateCatById:
+    handler: controllers/cat.updateCatById
+    events:
+      - http:
+          path: cat/{id}/update
+          method: put
+
+  deleteCatById:
+    handler: controllers/cat.deleteCatById
+    events:
+      - http:
+          path: /cat/{id}/delete
+          method: delete
